@@ -12,6 +12,7 @@
         <module>camunda-engine-karaf-feature</module>
         <module>camunda-engine-blueprint-wrapper</module>
         <module>camunda-engine-karaf-commands</module>
+        <module>camunda-webapp-osgi</module>
     </modules>
 
     <properties>
