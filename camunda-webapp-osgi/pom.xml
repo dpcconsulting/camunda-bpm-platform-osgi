@@ -164,8 +164,14 @@
                         <Webapp-Context>camunda</Webapp-Context>
                         <Embed-Dependency>*;scope=compile|runtime;</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
-                        <Import-Package>org.camunda.bpm.engine.impl.juel,!Acme.Serve,!org.junit,!org.camunda.bpm.cockpit.*,!org.apache.log,!com.sun.jdi.*,
-                            !org.codehaus.jackson.xc,*</Import-Package>
+                        <Import-Package>
+                            org.camunda.bpm.engine.impl.juel,
+                            !Acme.Serve,!org.junit,
+                            !org.camunda.bpm.cockpit.*,
+                            !org.apache.log,!com.sun.jdi.*,
+                            !org.codehaus.jackson.xc,
+                            *
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
