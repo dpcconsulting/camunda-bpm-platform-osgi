@@ -12,17 +12,17 @@ public class BlueprintProcessEngineProvider implements ProcessEngineProvider {
 
     @Override
     public ProcessEngine getDefaultProcessEngine() {
-        return BundleActivator.ENGINE;
+        return CamundaWebappActivator.ENGINE;
     }
 
     @Override
     public ProcessEngine getProcessEngine(String s) {
-        return BundleActivator.ENGINE;
+        return CamundaWebappActivator.ENGINE;
     }
 
     @Override
     public Set<String> getProcessEngineNames() {
-        if (BundleActivator.ENGINE != null) {
+        if (CamundaWebappActivator.ENGINE != null) {
             return new HashSet<String>() {{
                 add("default");
             }};
