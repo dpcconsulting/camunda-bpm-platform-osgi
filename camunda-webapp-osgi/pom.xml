@@ -161,11 +161,12 @@
                         <Bundle-Activator>org.camunda.bpm.engine.osgi.web.BundleActivator</Bundle-Activator>
                         <Embed-Directory>WEB-INF/lib</Embed-Directory>
                         <Bundle-ClassPath>.,WEB-INF/classes</Bundle-ClassPath>
-                        <Webapp-Context>camunda</Webapp-Context>
+			<Web-ContextPath>/camunda</Web-ContextPath>
+                        <Webapp-Context>/camunda</Webapp-Context>
                         <Embed-Dependency>*;scope=compile|runtime;</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
-                        <Import-Package>org.camunda.bpm.engine.impl.juel,!Acme.Serve,!org.junit,!org.camunda.bpm.cockpit.*,!org.apache.log,!com.sun.jdi.*,
-                            !org.codehaus.jackson.xc,*</Import-Package>
+                        <Import-Package>org.camunda.bpm.engine.impl.juel,!Acme.Serve,!org.junit,!org.apache.log,!com.sun.jdi.*,
+                            !org.codehaus.jackson.xc,org.camunda.bpm.engine,*</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
@@ -184,10 +185,9 @@
                             <artifactId>camunda-webapp-tomcat</artifactId>
                             <type>war</type>
                             <excludes>
-                                <!--exclude>WEB-INF/lib/*</exclude-->
+                                <exclude>WEB-INF/classes/META-INF/services/org.camunda.bpm.engine.rest.spi.ProcessEngineProvider</exclude>
                                 <exclude>WEB-INF/classes/db.properties</exclude>
                                 <exclude>WEB-INF/classes/logging.properties</exclude>
-                                <!--exclude>WEB-INF/web.xml</exclude>-->
                             </excludes>
                         </overlay>
                         <!--overlay>
