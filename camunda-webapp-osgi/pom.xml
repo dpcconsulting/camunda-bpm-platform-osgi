@@ -12,6 +12,9 @@
     <modelVersion>4.0.0</modelVersion>
     <name>camunda-webapp-osgi</name>
 
+    <properties>
+        <dependency.karaf.version>3.0.0</dependency.karaf.version>
+    </properties>
 
     <dependencies>
 
@@ -66,10 +69,81 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-junit4</artifactId>
+            <version>${paxexam.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-link-mvn</artifactId>
+            <version>${paxexam.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.url</groupId>
+            <artifactId>pax-url-aether</artifactId>
+            <version>1.6.0</version>
+            <type>bundle</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <version>3.2.2</version>
+            <type>bundle</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.url</groupId>
+            <artifactId>pax-url-reference</artifactId>
+            <version>1.6.0</version>
+            <type>bundle</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.tinybundles</groupId>
+            <artifactId>tinybundles</artifactId>
+            <version>2.0.0</version>
+            <type>bundle</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-container-native</artifactId>
+            <version>${paxexam.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.2.143</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -161,12 +235,13 @@
                         <Bundle-Activator>org.camunda.bpm.engine.osgi.web.BundleActivator</Bundle-Activator>
                         <Embed-Directory>WEB-INF/lib</Embed-Directory>
                         <Bundle-ClassPath>.,WEB-INF/classes</Bundle-ClassPath>
-			<Web-ContextPath>/camunda</Web-ContextPath>
+                        <Web-ContextPath>/camunda</Web-ContextPath>
                         <Webapp-Context>/camunda</Webapp-Context>
                         <Embed-Dependency>*;scope=compile|runtime;</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
                         <Import-Package>org.camunda.bpm.engine.impl.juel,!Acme.Serve,!org.junit,!org.apache.log,!com.sun.jdi.*,
-                            !org.codehaus.jackson.xc,org.camunda.bpm.engine,*</Import-Package>
+                            !org.codehaus.jackson.xc,org.camunda.bpm.engine,*
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
