@@ -15,7 +15,6 @@ package org.camunda.bpm.engine.osgi.blueprint;
 
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.ProcessEngineConfiguration;
-import org.camunda.bpm.engine.impl.ProcessEngineImpl;
 import org.osgi.framework.Bundle;
 
 /**
@@ -26,9 +25,9 @@ public class ProcessEngineFactory {
     protected ProcessEngineConfiguration processEngineConfiguration;
     protected Bundle bundle;
 
-    protected ProcessEngineImpl processEngine;
+    protected ProcessEngine processEngine;
 
-    public void init() throws Exception {
+    public void init() {
         ClassLoader previous = Thread.currentThread().getContextClassLoader();
 
         try {
@@ -43,20 +42,20 @@ public class ProcessEngineFactory {
 
             processEngineConfiguration.setClassLoader(cl);
 
-            processEngine = (ProcessEngineImpl) processEngineConfiguration.buildProcessEngine();
+            processEngine = processEngineConfiguration.buildProcessEngine();
 
         } finally {
             Thread.currentThread().setContextClassLoader(previous);
         }
     }
 
-    public void destroy() throws Exception {
+    public void destroy() {
         if (processEngine != null) {
             processEngine.close();
         }
     }
 
-    public ProcessEngine getObject() throws Exception {
+    public ProcessEngine getObject() {
         return processEngine;
     }
 

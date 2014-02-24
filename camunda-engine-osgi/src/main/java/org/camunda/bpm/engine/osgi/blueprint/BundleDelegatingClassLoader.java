@@ -49,7 +49,7 @@ public class BundleDelegatingClassLoader extends ClassLoader {
         this.classLoader = classLoader;
     }
 
-    protected Class findClass(final String name) throws ClassNotFoundException {
+    protected Class<?> findClass(final String name) throws ClassNotFoundException {
         try {
             return AccessController.doPrivileged(new PrivilegedExceptionAction<Class<?>>() {
                 public Class<?> run() throws ClassNotFoundException
@@ -79,14 +79,14 @@ public class BundleDelegatingClassLoader extends ClassLoader {
         return resource;
     }
 
-    protected Enumeration findResources(final String name) throws IOException {
+    protected Enumeration<URL> findResources(final String name) throws IOException {
         Enumeration<URL> urls;
         try {
             urls =  AccessController.doPrivileged(new PrivilegedExceptionAction<Enumeration<URL>>() {
                 @SuppressWarnings("unchecked")
                 public Enumeration<URL> run() throws IOException
                 {
-                    return (Enumeration<URL>)bundle.getResources(name);
+                    return bundle.getResources(name);
                 }
 
             });
@@ -104,8 +104,8 @@ public class BundleDelegatingClassLoader extends ClassLoader {
         return urls;
     }
 
-    protected Class loadClass(String name, boolean resolve) throws ClassNotFoundException {
-        Class clazz;
+    protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+        Class<?> clazz;
         try {
             clazz = findClass(name);
         }
