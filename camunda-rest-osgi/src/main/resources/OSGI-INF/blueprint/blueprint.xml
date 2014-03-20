@@ -16,20 +16,19 @@
         </cxf:features>
     </cxf:bus>
 
-    <!-- 2 -->
+    <bean id="GsonWriter" class="org.camunda.bpm.engine.osgi.web.GsonMessageBodyWriter"/>
+
+
     <jaxrs:server address="http://localhost:7700/engine" id="processEngineRestService">
         <jaxrs:serviceBeans>
             <bean class="org.camunda.bpm.engine.rest.impl.ProcessEngineRestServiceImpl"></bean>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
-            <ref component-id="arrayListProvider"></ref>
+            <ref component-id="GsonWriter"></ref>
         </jaxrs:providers>
     </jaxrs:server>
 
 
-    <bean id="arrayListProvider" class="org.jboss.fuse.examples.cxf.jaxrs.CustomMessageBodyWriter">
-
-    </bean>
 
 
 </blueprint>
