@@ -17,18 +17,38 @@
     </cxf:bus>
 
     <bean id="GsonWriter" class="org.camunda.bpm.engine.osgi.web.GsonMessageBodyWriter"/>
+    <bean id="GsonReader" class="org.camunda.bpm.engine.osgi.web.GsonMessageBodyReader"/>
 
 
-    <jaxrs:server address="http://localhost:7700/engine" id="processEngineRestService">
+    <jaxrs:server address="http://localhost:7700" id="processEngineRestService">
         <jaxrs:serviceBeans>
             <bean class="org.camunda.bpm.engine.rest.impl.ProcessEngineRestServiceImpl"></bean>
+            <bean class="org.camunda.bpm.engine.rest.impl.ProcessDefinitionRestServiceImpl"></bean>
+            <bean class="org.camunda.bpm.engine.rest.impl.ProcessInstanceRestServiceImpl"></bean>
+
+
+            <bean class="org.camunda.bpm.engine.rest.impl.TaskRestServiceImpl"></bean>
+            <bean class="org.camunda.bpm.engine.rest.impl.JobRestServiceImpl"></bean>
+            <bean class="org.camunda.bpm.engine.rest.impl.JobDefinitionRestServiceImpl"></bean>
+
+            <bean class="org.camunda.bpm.engine.rest.impl.UserRestServiceImpl"></bean>
+            <bean class="org.camunda.bpm.engine.rest.impl.GroupRestServiceImpl"></bean>
+            <bean class="org.camunda.bpm.engine.rest.impl.AuthorizationRestServiceImpl"></bean>
+
+            <bean class="org.camunda.bpm.engine.rest.impl.VariableInstanceRestServiceImpl"></bean>
+            <bean class="org.camunda.bpm.engine.rest.impl.MessageRestServiceImpl"></bean>
+
+            <bean class="org.camunda.bpm.engine.rest.impl.ExecutionRestServiceImpl"></bean>
+
+            <bean class="org.camunda.bpm.engine.rest.impl.history.HistoryRestServiceImpl"></bean>
+
+
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref component-id="GsonWriter"></ref>
+            <ref component-id="GsonReader"></ref>
         </jaxrs:providers>
     </jaxrs:server>
-
-
 
 
 </blueprint>
